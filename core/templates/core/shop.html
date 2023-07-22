@@ -22,10 +22,12 @@
             <h3 class="mt-6 mb-3 text-xl uppercase">Categories</h3>
 
             <ul class="space-y-2">
-                <li><a href="#" class="text-purple-500">All categories</a></li>
-                <li><a href="#" class="text-gray-500">Fridges</a></li>
-                <li><a href="#" class="text-gray-500">Microwaves</a></li>
-                <li><a href="#" class="text-gray-500">Dishwashers</a></li>
+                <li><a href="{% url 'shop' %}" class="text-purple-500">All categories</a></li>
+
+                {% for category in categories %}
+                <li><a href="{% url 'shop' %}?category={{ category.slug }}" class="text-gray-500">{{ category.name }}</a></li>
+
+                {% endfor %}
             </ul>
         </div>
 

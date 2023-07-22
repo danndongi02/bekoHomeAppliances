@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from product.models import Product
+from product.models import Product, Category
 
 def homepage(request):
     products = Product.objects.all()[0:8]
@@ -12,8 +12,10 @@ def homepage(request):
 
 def shop(request):
     products = Product.objects.all()
+    categories = Category.objects.all()
     
     context = {
-        'products': products
+        'products': products,
+        'categories': categories
     }
     return render(request, 'core/shop.html', context)
