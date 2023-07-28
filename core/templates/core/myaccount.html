@@ -22,73 +22,42 @@
 
         <h2 class="my-6 text-xl">My Orders</h2>
 
-        <div class="w-full mb-6 p-6 flex flex-wrap bg-gray-100 rounded-xl">
-            <div class="mb-6 flex justify-between">
-                <a href="#">Order id: 1</a>
-            </div>
-
-            <div class="mb-6 w-full">
-                <div class="product mb-6 flex pr-6">
-                    <a href="#" class="w-1/4">
-                        <img src="D:\Programming\projects\beko2\bekoHomeAppliances\media\uploads\Bruhm_BKW_18PB_-_1.8L_Cordless_Kettle_-_White__Black.jpg" alt="OrderID" class="hover:shadow-lg rounded-xl">
-                    </a>
-
-                    <div class="w-3/4 pl-6">
-                        <div class="flex justify-between">
-                            <a href="#" class="text-lg">Product Name</a>
-
-                            <p class="mb-6 pt-1 text-gray-400">KSH 50,000</p>
-                        </div>
-
-                        <hr>
-
-                        <div class="mt-6">Quantity: 1</div>
-                    </div>
+        {% for order in request.user.orders.all %}
+            <div class="w-full mb-6 p-6 flex flex-wrap bg-gray-100 rounded-xl">
+                <div class="mb-6 flex justify-between">
+                    <a href="#">Order id: {{ order.id }}</a>
                 </div>
 
-                <div class="product mb-6 flex pr-6">
-                    <a href="#" class="w-1/4">
-                        <img src="D:\Programming\projects\beko2\bekoHomeAppliances\media\uploads\Bruhm_BKW_18PB_-_1.8L_Cordless_Kettle_-_White__Black.jpg" alt="OrderID" class="hover:shadow-lg rounded-xl">
-                    </a>
+                <div class="mb-6 w-full">
 
-                    <div class="w-3/4 pl-6">
-                        <div class="flex justify-between">
-                            <a href="#" class="text-lg">Product Name</a>
+                    {% for item in order.items.all %}
+                        <div class="product mb-6 flex pr-6">
+                            <a href="#" class="w-1/4">
+                                <img src="{{ item.product.get_thumbnail }}" alt="OrderID" class="hover:shadow-lg rounded-xl">
+                            </a>
 
-                            <p class="mb-6 pt-1 text-gray-400">KSH 50,000</p>
+                            <div class="w-3/4 pl-6">
+                                <div class="flex justify-between">
+                                    <a href="#" class="text-lg">{{ item.product.name }}</a>
+
+                                    <p class="mb-6 pt-1 text-gray-400">KSH 50,000</p>
+                                </div>
+
+                                <hr>
+
+                                <div class="mt-6">Quantity: {{ item.quantity }}</div>
+                            </div>
                         </div>
-
-                        <hr>
-
-                        <div class="mt-6">Quantity: 1</div>
-                    </div>
+                    {% endfor %}
                 </div>
 
-                <div class="product mb-6 flex pr-6">
-                    <a href="#" class="w-1/4">
-                        <img src="D:\Programming\projects\beko2\bekoHomeAppliances\media\uploads\Bruhm_BKW_18PB_-_1.8L_Cordless_Kettle_-_White__Black.jpg" alt="OrderID" class="hover:shadow-lg rounded-xl">
-                    </a>
-
-                    <div class="w-3/4 pl-6">
-                        <div class="flex justify-between">
-                            <a href="#" class="text-lg">Product Name</a>
-
-                            <p class="mb-6 pt-1 text-gray-400">KSH 50,000</p>
-                        </div>
-
-                        <hr>
-
-                        <div class="mt-6">Quantity: 1</div>
-                    </div>
+                <div>
+                    <p class="text-lg"><strong>Date:</strong> {{ order.created_at }}</p>
+                    <p class="text-lg"><strong>Total:</strong> KSH 150,000</p>
                 </div>
-            </div>
 
-            <div>
-                <p class="text-lg"><strong>Date:</strong> 7/28/2023</p>
-                <p class="text-lg"><strong>Total:</strong> KSH 150,000</p>
             </div>
-
-        </div>
+        {% endfor %}
 
     </div>
 
