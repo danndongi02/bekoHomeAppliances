@@ -8,7 +8,12 @@
                 <li><a href="#">About</a></li>
 
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}"> 
+                            {% csrf_token %}
+                            <button type="submit" class="text-purple-500 hover:text-purple-800">Log Out</button>
+                        </form>
+                    </li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Log In</a></li>
                 {% endif %}
