@@ -72,3 +72,6 @@ def shop(request):
         'active_category': active_category
     }
     return render(request, 'core/shop.html', context)
+
+def about(request):
+    return render(request, 'core/about.html')
