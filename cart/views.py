@@ -41,14 +41,13 @@ def update_cart(request, product_id, action):
     response['HX-Trigger'] = 'update-menu-cart'
     
     return response
-
-@login_required
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     cart.remove(product_id)
 
-    return render(request, 'cart/partials/cart_total.html')
+    return render(request, 'cart/menu_cart.html')
 
+@login_required
 def checkout(request):
     return render(request, 'cart/checkout.html')
 
