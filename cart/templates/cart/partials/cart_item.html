@@ -18,6 +18,13 @@
             <a class="p-3 bg-gray-100" hx-get="{% url 'update_cart' item.product.id 'decrement' %}" hx-target="#cart-item-{{ item.product.id }}" hx-swap="outerHTML">-</a>
             <span>{{ item.quantity }}</span>
             <a class="p-3 bg-gray-100" hx-get="{% url 'update_cart' item.product.id 'increment' %}" hx-target="#cart-item-{{ item.product.id }}" hx-swap="outerHTML">+</a>
+            <a href="#" class="p-3 bg-red-500 text-white rounded-xl" 
+               hx-get="{% url 'remove_from_cart' item.product.id %}" 
+               hx-target="#cart-item-{{ item.product.id }}" 
+               hx-swap="delete"
+               hx-confirm="Are you sure you want to remove this item from your cart?">
+                Remove
+            </a>
         </div>
     </div>
 </div>
