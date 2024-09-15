@@ -43,10 +43,6 @@ def update_cart(request, product_id, action):
     return response
 
 @login_required
-from .cart import Cart  # Import Cart
-from product.models import Product  # Import Product
-
-@login_required
 def remove_from_cart(request, product_id):
     cart = Cart(request)
     cart.remove(product_id)
